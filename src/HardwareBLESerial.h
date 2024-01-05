@@ -8,9 +8,9 @@ An Arduino library for Nordic Semiconductors' proprietary "UART/Serial Port Emul
 Tested using UART console feature in [Adafruit Bluefruit LE Connect](https://apps.apple.com/at/app/adafruit-bluefruit-le-connect/id830125974).
 */
 
-#ifndef __BLE_SERIAL_H__
-#define __BLE_SERIAL_H__
+#pragma once
 
+#include <string>
 #include <Arduino.h>
 #include <ArduinoBLE.h>
 
@@ -84,6 +84,9 @@ class HardwareBLESerial {
     size_t print(double value);
     size_t println(double value);
 
+    bool availableCmds();
+    std::string readCmd();
+
     operator bool();
 
     // Return the time since last flush in ms
@@ -110,5 +113,3 @@ class HardwareBLESerial {
     void onReceive(const uint8_t* data, size_t size);
     static void onBLEWritten(BLEDevice central, BLECharacteristic characteristic);
 };
-
-#endif
